@@ -12,7 +12,7 @@
 
             // 1.1 Print the length of the string.
             Console.Write("test");
-
+            //another test
             // 1.2 Print the first and the last character of the string.
 
             // 2. String Manipulation
