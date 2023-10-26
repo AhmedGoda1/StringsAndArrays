@@ -11,9 +11,7 @@
             string helloWorld = "Hello, World!";
 
             // 1.1 Print the length of the string.
-            Console.Write("test");
-            //another test
-            // one more test
+            //delsting the test
 
             // 1.2 Print the first and the last character of the string.
 
