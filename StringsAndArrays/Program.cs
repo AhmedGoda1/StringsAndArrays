@@ -1,10 +1,11 @@
 using System.Globalization;
 
+using System;
+
 namespace StringsAndArrays
 {
     class Program
     {
-        // INSTRUCTIONS: Write you task related code answers under each specific comment/insturction
         static void Main(string[] args)
         {
             // PART 1: Strings
@@ -12,52 +13,41 @@ namespace StringsAndArrays
             // 1. Basic String Operations
             string helloWorld = "Hello, World!";
 
-            Console.WriteLine("\n------------ Task 1.1 ------------------");
-
             // 1.1 Print the length of the string.
-            Console.WriteLine(helloWorld.Length);
-            // 1.2 Print the first and the last character of the string.
-            Console.WriteLine("\n------------ Task 1.2 ------------------");
+            Console.WriteLine($"Length of the string: {helloWorld.Length}");
 
-            Console.WriteLine(helloWorld.First());
-            Console.WriteLine(helloWorld.Last());
+            // 1.2 Print the first and the last character of the string.
+            Console.WriteLine($"First character: {helloWorld[0]}, Last character: {helloWorld[^1]}");
 
             // 2. String Manipulation
-            Console.WriteLine("\n------------ Task 2 ------------------");
-
             Console.Write("Please enter your name: ");
 
-            // 2.1 Get the input from and assing it into new string variable called name
-            string name = Convert.ToString(Console.ReadLine());
+            // 2.1 Get the input from and assign it into new string variable called name
+            string name = Console.ReadLine();
 
             // 2.2 Print a personalized welcome message including the name.
-            Console.WriteLine("Welcome to Xamk: " + name);
-
-            Console.WriteLine("\n------------ Task 2.3 ------------------");
+            Console.WriteLine($"Welcome, {name}!");
 
             // 2.3 Convert name variable to uppercase and output the result
-            Console.WriteLine( name.ToUpper());
-            Console.WriteLine("\n------------ Task 2.4 ------------------");
+            Console.WriteLine($"Uppercase: {name.ToUpper()}");
 
-            // 2.4 Convert name variable to lovercase and output the result
-            Console.WriteLine(name.ToLower());
+            // 2.4 Convert name variable to lowercase and output the result
+            Console.WriteLine($"Lowercase: {name.ToLower()}");
 
             // 3. String Searching
             // 3.1 Create new boolean variable called containsWorld
-            Console.WriteLine("\n------------ Task 3 ------------------");
-
-            bool containsWorld = helloWorld.Contains("World");
+            bool containsWorld;
 
             // 3.2 Check that the helloWorld variable contains the word "World".
-            //assign the result to the created constainsWorld variable
-            // 3.3 If the word is found, get the index of the word from helloWorld string
+            //     Assign the result to the created containsWorld variable
+            containsWorld = helloWorld.Contains("World");
 
+            // 3.3 If the word is found, get the index of the word from helloWorld string
             if (containsWorld)
             {
-                Console.WriteLine(helloWorld.IndexOf("World"));
+                int index = helloWorld.IndexOf("World");
+                Console.WriteLine($"Index of 'World': {index}");
             }
-
-            Console.WriteLine("\n------------ Part2 Arrays ------------------");
 
             // PART 2: Arrays
 
@@ -65,74 +55,74 @@ namespace StringsAndArrays
             // 1.1 initialize array called numbers containing array of int values
             //     Add these values to the array -> 2 3 5 7 11 
             int[] numbers = { 2, 3, 5, 7, 11 };
+
             // 1.2 Output the numbers array -> hint use Join
             // Expected outcome: 2, 3, 5, 7, 11
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                Console.Write(", " + numbers[i]);
+            Console.WriteLine($"Numbers: {string.Join(", ", numbers)}");
 
-            }
-            Console.WriteLine("\n------------ Arrays 1.3 ------------------");
-
-            // 1.3 Output the value of the third (3th) item in the numbers array 
+            // 1.3 Output the value of the third (3rd) item in the numbers array 
             // Expected outcome: 5
-            Console.WriteLine(numbers[2]);
-
-            Console.WriteLine("\n------------ Arrays 2 ------------------");
+            Console.WriteLine($"Third item: {numbers[2]}");
 
             // 2. Array Manipulation
-            // 2.1 Initialize new names string array variable that has room for 5 items
-            //     The maximum lenght of the string array should be 5
-            string [] newNames = new string[5];
-            // 2.2 Ask the user to input new names 5 times
+            Console.WriteLine("Please enter five names:");
 
-            //     and assing each name to the names string array in the given order.
+            // 2.1 Initialize new names string array variable that has room for 5 items
+            //     The maximum length of the string array should be 5
+            string[] names = new string[5];
+
+            // 2.2 Ask the user to input new names 5 times
+            //     and assign each name to the names string array in the given order.
             //     The first name should be at index 0
             //     Hint: you might want to use some sort of a loop here
-
-            for (int j = 0; j < newNames.Length; j++)
+            for (int i = 0; i < names.Length; i++)
             {
-                Console.WriteLine("Please enter five names: ");
-                Console.ReadLine();
-
-                // 2.3 Output the array of given names.
-                Console.WriteLine(newNames[j]);
+                Console.Write($"Enter name {i + 1}: ");
+                names[i] = Console.ReadLine();
             }
-            // 2.4 Reverse the order of the items in the names array and outpu the result
-            Console.WriteLine(newNames.Reverse());
 
-            Console.WriteLine("\n------------ Arrays 3.1 ------------------");
+            // 2.3 Output the array of given names.
+            Console.WriteLine($"Given names: {string.Join(", ", names)}");
+
+            // 2.4 Reverse the order of the items in the names array and output the result
+            Array.Reverse(names);
+            Console.WriteLine($"Reversed names: {string.Join(", ", names)}");
 
             // 3. Array Searching
             Console.Write("Please enter a name to search: ");
             string searchName = Console.ReadLine();
+
             // 3.1 Try to find out the searchName from the Task 2 names string array
-            //     by finding out it's index.
+            //     by finding out its index.
             //     Assign the index value to new position integer variable
-            for (int k = 0; k < newNames.Length; k++)
-            {
-
-                // Console.WriteLine(searchName.IndexOf(newNames));
-            }
-
-
+            int position = Array.IndexOf(names, searchName);
 
             // 3.2 Check that the index position was found
             //     Hint: What is the result of IndexOf if nothing is found
             // 3.2.1 If position is found output the searchName and the found position
             // 3.2.2 Else output that the searchName was not found
+            if (position != -1)
+            {
+                Console.WriteLine($"Found '{searchName}' at position {position}");
+            }
+            else
+            {
+                Console.WriteLine($"'{searchName}' not found");
+            }
 
             // 4. BONUS
 
             // 1. String to Array
             // 1.1 Create new empty words string array
-            string[] words = new string[0];
+            string[] words;
 
-            // 1.2 Try to get each word from the helloWorld variable and assing the values to
+            // 1.2 Try to get each word from the helloWorld variable and assign the values to
             //     the created words string array
-            //f
+            words = helloWorld.Split(' ');
 
             // 1.3 Output the values of the words array
+            Console.WriteLine($"Words: {string.Join(", ", words)}");
         }
     }
 }
+
